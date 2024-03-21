@@ -11,3 +11,6 @@ venv/
 
 # Compiled Python files
 __pycache__/
+
+# Huge data files (i included the zip file that should be uncompressed)
+data/raw/energy/household_power_consumption.csv
