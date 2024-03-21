@@ -1,0 +1,13 @@
+# Jupyter Notebook checkpoints
+notebooks/.ipynb_checkpoints/
+.ipynb_checkpoints/
+
+# IDE or text editor generated files
+.vscode/
+
+# Python virtual environments
+venv/
+.env/
+
+# Compiled Python files
+__pycache__/

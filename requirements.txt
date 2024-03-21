@@ -1,0 +1,12 @@
+jupyterlab  
+pandas 
+scikit-learn
+numpy
+matplotlib
+seaborn
+plotly 
+colorama  
+xgboost 
+statsmodels 
+missingno 
+tqdm
