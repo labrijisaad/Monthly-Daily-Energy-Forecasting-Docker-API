@@ -1,4 +1,5 @@
-jupyterlab  
+jupyterlab
+python-dotenv  
 pandas 
 scikit-learn
 numpy

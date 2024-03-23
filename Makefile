@@ -89,11 +89,23 @@ clean:
 	@$(DELETE_CMD) $(VENV_NAME)
 	@echo ">>>>>> Cleaned up environment <<<<<<"
 
+# Test the short-term model prediction
+test-short-term:
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py --date '2010-11-25' --model short
+	@echo ">>>>>> Completed short-term model test <<<<<<"
+
+# Test the long-term model prediction
+test-long-term:
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py -d '2010-11-25' -m long
+	@echo ">>>>>> Completed long-term model test <<<<<<"
+
 # Display available make targets
 help:
 	@echo Available targets:
-	@echo   make init    - Initialize the project's structure
+	@echo   make init    - Initialize the project's structure and essential files
 	@echo   make setup   - Create a virtual environment and install dependencies
 	@echo   make update  - Update dependencies in the virtual environment
 	@echo   make clean   - Clean up the virtual environment and generated files
 	@echo   make jupyter - Activate the virtual environment and run Jupyter Lab
+	@echo   make test-short-term - Test the short-term model prediction for a specific date
+	@echo   make test-long-term - Test the long-term model prediction for a specific date
