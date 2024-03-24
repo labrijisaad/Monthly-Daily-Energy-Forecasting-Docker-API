@@ -10,8 +10,9 @@ load_dotenv()
 
 def main(date, model_choice):
     # Load Processed Data
-    data_path = os.getenv('PROCESSED_DATA_PATH', '../data/processed/weather_and_consumption.csv')
-    weather_and_consumption_df = pd.read_csv(data_path, index_col=0, parse_dates=True)
+    data_path = os.getenv('PROCESSED_DATA_PATH')
+    full_path = data_path + '/weather_and_consumption.csv'
+    weather_and_consumption_df = pd.read_csv(full_path, index_col=0, parse_dates=True)
 
     # Model Selection
     if model_choice == 'short':

@@ -1,5 +1,3 @@
-# Makefile for Data Science Projects
-
 # Variables
 VENV_NAME := venv
 DATA_RAW_DIR := data/raw
@@ -13,6 +11,10 @@ ENV_FILE := .env
 GITIGNORE_FILE := .gitignore
 REQUIREMENTS_FILE := requirements.txt
 GITKEEP_FILE := .gitkeep
+AUTHOR := labriji saad
+
+# Default target
+.DEFAULT_GOAL := help
 
 # Detect OS and set commands accordingly
 OSFLAG :=
@@ -39,12 +41,6 @@ else
     POWERSHELL_CMD := pwsh
 endif
 
-# Phony targets
-.PHONY: init setup update clean jupyter help
-
-# Default target
-.DEFAULT_GOAL := help
-
 # Initialization of project structure and files
 init:
 	@mkdir "$(DATA_RAW_DIR)" "$(DATA_PROCESSED_DIR)" "$(DATA_EXTERNAL_DIR)" "$(NOTEBOOKS_DIR)" "$(DOCS_DIR)" 2> NUL || echo "Directories already exist."
@@ -53,7 +49,6 @@ init:
 	@echo. 2> "$(DATA_EXTERNAL_DIR)\$(GITKEEP_FILE)" || echo "File $(DATA_EXTERNAL_DIR)\$(GITKEEP_FILE) already exists."
 	@echo. 2> "$(NOTEBOOKS_DIR)\$(GITKEEP_FILE)" || echo "File $(NOTEBOOKS_DIR)\$(GITKEEP_FILE) already exists."
 	@echo. 2> "$(DOCS_DIR)\$(GITKEEP_FILE)" || echo "File $(DOCS_DIR)\$(GITKEEP_FILE) already exists."
-	
 	@echo # Project Title > "$(README_FILE)"
 	@echo. >> "$(README_FILE)"
 	@echo ## Connect >> "$(README_FILE)"
@@ -73,7 +68,6 @@ setup:
 	@pip install -r $(REQUIREMENTS_FILE)
 	@echo ">>>>>> Environment is ready <<<<<<"
 
-
 # Update dependencies in the virtual environment
 update:
 	@$(VENV_ACTIVATE) && python.exe -m pip install --upgrade pip && pip install -r $(REQUIREMENTS_FILE)
@@ -91,21 +85,45 @@ clean:
 
 # Test the short-term model prediction
 test-short-term:
-	@$(VENV_ACTIVATE) && python src/energy_forecasting.py --date '2010-11-25' --model short
-	@echo ">>>>>> Completed short-term model test <<<<<<"
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py --date '2010-05-17' --model short
 
 # Test the long-term model prediction
 test-long-term:
-	@$(VENV_ACTIVATE) && python src/energy_forecasting.py -d '2010-11-25' -m long
-	@echo ">>>>>> Completed long-term model test <<<<<<"
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py -d '2010-05-17' -m long
+
+# Test the short-term model prediction with custom date
+short-term:
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py --date $(DATE) --model short
+
+# Test the long-term model prediction with custom date
+long-term:
+	@$(VENV_ACTIVATE) && python src/energy_forecasting.py -d $(DATE) -m long
+
+# Build the Docker image
+docker-build:
+	@docker build -t energy_forecasting -f docker/Dockerfile .
+
+# Test running the Docker container with mounted volume
+test-docker-run:
+	@docker run --rm -v "$(CURDIR)/data/processed:/app/data" energy_forecasting src/energy_forecasting.py --date '2010-05-17' --model short
+
+# Test running the Docker container with mounted volume and custom arguments
+docker-run:
+	@docker run --rm -v "$(CURDIR)/data/processed:/app/data" energy_forecasting src/energy_forecasting.py --date $(DATE) --model $(MODEL)
 
 # Display available make targets
 help:
 	@echo Available targets:
-	@echo   make init    - Initialize the project's structure and essential files
-	@echo   make setup   - Create a virtual environment and install dependencies
-	@echo   make update  - Update dependencies in the virtual environment
-	@echo   make clean   - Clean up the virtual environment and generated files
-	@echo   make jupyter - Activate the virtual environment and run Jupyter Lab
-	@echo   make test-short-term - Test the short-term model prediction for a specific date
-	@echo   make test-long-term - Test the long-term model prediction for a specific date
+	@echo   make init                                             - Initialize the project's structure and essential files
+	@echo   make setup                                            - Create a virtual environment and install dependencies
+	@echo   make update                                           - Update dependencies in the virtual environment
+	@echo   make clean                                            - Clean up the virtual environment and generated files
+	@echo   make jupyter                                          - Activate the virtual environment and run Jupyter Lab
+	@echo   make test-short-term                                  - Test the short-term model prediction for the default date
+	@echo   make test-long-term                                   - Test the long-term model prediction for the default date
+	@echo   make short-term DATE=YYYY-MM-DD                       - Test the short-term model prediction with a custom date
+	@echo   make long-term DATE=YYYY-MM-DD                        - Test the long-term model prediction with a custom date
+	@echo   make docker-build                                     - Build the Docker image using the Dockerfile in the docker/ directory
+	@echo   make test-docker-run                                  - Run the Docker container with mounted volume
+	@echo   make docker-run DATE=YYYY-MM-DD MODEL=short/long      - Run the Docker container with mounted volume, specifying the date and model
+	@echo Author: $(AUTHOR)
