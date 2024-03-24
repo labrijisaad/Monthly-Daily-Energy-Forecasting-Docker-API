@@ -23,7 +23,25 @@ I organized my work into Jupyter notebooks 📓, located in the `notebooks` dire
 - **[API - Energy_Forecasting.ipynb](./notebooks/API%20-%20Energy_Forecasting.ipynb)**: Designs a system to simulate an API for energy use predictions 🌐.
 
 
+### Development Workflow 🧜‍♂️
 
+Below is a Mermaid diagram outlining the Development Workflow.
+
+```mermaid
+graph LR
+    classDef processNode fill:#4F5D75,stroke:#EF8354,stroke-width:2px,color:#FFFFFF;
+
+    B[EDA & Data Prep]
+    B --> C[Machine Learning]
+    C --> D[API - Simulation]
+    D --> E[API Development]
+    E -->|Dockerized| F[Docker]
+    E -->|Virtual Env/Conda| G[Virtual Environment/Conda]
+    F --> H[Test and Use API]
+    G --> H
+
+    class A,B,C,D,E,F,G,H processNode;
+```
 ## API Construction 🏗️
 
 After prototyping in the [API - Energy_Forecasting Notebook](./notebooks/API%20-%20Energy_Forecasting.ipynb), Hre is how i designed the project structure:
