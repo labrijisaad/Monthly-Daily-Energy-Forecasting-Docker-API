@@ -1,14 +1,14 @@
 # Energy Forecasting API⚡
 
-## Introduction 📘
+## 📘 Introduction
 
 This project is all about predicting energy use 🔌. It began with a simple CSV file 📁, and I worked through steps like analyzing the data (EDA), using machine learning for predictions 🤖, and finally creating a Dockerized API 🐳. **This journey represents a common task for Machine Learning Engineers**: transforming data analysis into a usable API. I developed two prediction models: one for the next day 📆 and another for the next 30 days 🗓️, both based on historical data.
 
-## Objectives 🎯
+## 🎯 Objectives
 
 Here's what I aimed to achieve:
 
-- Understand a CSV dataset 📁.
+- Understand and Prepare a raw CSV dataset 📁.
 - Build models to forecast energy use for the upcoming **day** and **month** 🔮.
 - Package these models into an API, making it straightforward for others to use, encapsulated in Docker 📦.
 
@@ -23,56 +23,61 @@ I organized my work into Jupyter notebooks 📓, located in the `notebooks` dire
 - **[API - Energy_Forecasting.ipynb](./notebooks/API%20-%20Energy_Forecasting.ipynb)**: Designs a system to simulate an API for energy use predictions 🌐.
 
 
-### Development Workflow 🧜‍♂️
+### 🧜‍♂️ Development Workflow
 
-Below is a Mermaid diagram outlining the Development Workflow.
+Below is a **Mermaid Diagram** outlining the Development Workflow.
 
 ```mermaid
 graph LR
     classDef processNode fill:#4F5D75,stroke:#EF8354,stroke-width:2px,color:#FFFFFF;
 
-    B[EDA & Data Prep]
-    B --> C[Machine Learning]
-    C --> D[API - Simulation]
+    B[EDA & Data Prep - Notebook]
+    B --> C[Machine Learning - Notebook]
+    C --> D[API Simulation - Notebook]
     D --> E[API Development]
-    E -->|Dockerized| F[Docker]
+    E -->|Dockerized| F[Docker Environment]
     E -->|Virtual Env/Conda| G[Virtual Environment/Conda]
     F --> H[Test and Use API]
     G --> H
 
     class A,B,C,D,E,F,G,H processNode;
 ```
-## API Construction 🏗️
+## 🏗️ API Construction
 
-After prototyping in the [API - Energy_Forecasting Notebook](./notebooks/API%20-%20Energy_Forecasting.ipynb), Hre is how i designed the project structure:
+After prototyping in the [API - Energy_Forecasting Notebook](./notebooks/API%20-%20Energy_Forecasting.ipynb), Here is how i designed the project structure:
 
 ```
 Energy-Forecast-API/
 │
-├── docker/
-│   ├── Dockerfile
-│   └── requirements.txt        # API dependencies
+├── docker/                                 # Docker configuration files
+│   ├── Dockerfile                          # Instructions for building the Docker image
+│   └── requirements.txt                    # API dependencies for the Docker image
 │
-├── src/
-│   ├── __init__.py
-│   ├── energy_forecasting.py
-│   └── models/
-│       ├── __init__.py
-│       ├── base_energy_model.py
-│       ├── short_term_energy_model.py
-│       └── long_term_energy_model.py
+├── src/                                    # Source code for the API
+│   ├── __init__.py                         
+│   ├── energy_forecasting.py               # Main script for energy forecasting logic
+│   └── models/                             
+│       ├── __init__.py                     
+│       ├── base_energy_model.py            # Base class for energy models
+│       ├── short_term_energy_model.py      # Short-term energy forecasting model
+│       └── long_term_energy_model.py       # Long-term energy forecasting model
 │
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── predictions/
+├── notebooks/                              
+│   ├── EDA_Data_Preparation.ipynb          # Exploratory Data Analysis and Data Preparation
+│   ├── ML_Experimentation.ipynb            # Machine Learning model experimentation
+│   └── API_Design.ipynb                    # Development of class-based API in notebook form
 │
-├── results/
+├── data/                                   
+│   ├── raw/                                # Unprocessed initial data
+│   └── processed/                          # Processed data ready for analysis
 │
-├── .env                        # Environment variables for Docker
-├── Makefile                    # Commands for project setup and operations
-├── requirements.txt            # Development dependencies
-└── README.md                   # Guide to the Energy Forecasting API
+├── results/                                # Outputs from analysis and model training notebooks
+│
+├── .env                                    # Environment variables for Docker and the application
+├── Makefile                                # Make commands for easy project setup and management
+├── requirements.txt                        # Project dependencies for development
+├── .gitignore                              # Specifies intentionally untracked files to ignore
+└── README.md                               # Comprehensive guide to setup and use the API
 ```
 
 ## 🚀 Run the Code
