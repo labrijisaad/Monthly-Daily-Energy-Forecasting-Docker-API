@@ -1,4 +1,4 @@
-# Energy Forecasting API⚡
+# `Monthly` & `Daily` Energy Forecasting `Docker API` ⚡
 
 ## 📘 Introduction
 
@@ -150,7 +150,7 @@ _For additional Docker commands, use `make help` in the terminal._
 
 ## 🌐 Let's Connect!
 
-You can connect with me on LinkedIn or check out my GitHub repositories:
+You can connect with me on **LinkedIn** or check out my **GitHub repositories**:
 
 <div align="center">
   <a href="https://www.linkedin.com/in/labrijisaad/">
