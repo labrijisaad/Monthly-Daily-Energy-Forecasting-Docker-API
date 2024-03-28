@@ -11,10 +11,11 @@ Here's what I aimed to achieve:
 - Understand and Prepare a raw CSV dataset 📁.
 - Build models to forecast energy use for the upcoming **day** and **month** 🔮.
 - Package these models into an API, making it straightforward for others to use, encapsulated in Docker 📦.
+- Allow using data with the Docker-contained API through **Docker volumes**.
 
 ## Preparation Before Building the API 🛠️
 
-I organized my work into Jupyter notebooks 📓, located in the `notebooks` directory. These notebooks detail my approach:
+Prior to constructing the API within the `src` folder, I put together and described my work in Jupyter notebooks 📓, found in the `notebooks` directory. These notebooks explain my steps:
 
 - **[EDA & Data Preparation - Energy_Forecasting.ipynb](./notebooks/EDA%20&%20Data%20Preparation%20-%20Energy_Forecasting.ipynb)**: Dives into the dataset and prepares it for the modeling stage 🕵️‍♂️.
   
@@ -121,7 +122,7 @@ _For more commands, type `make help` in the terminal._
 
 ### Option 2: Docker 🐳
 
-For Docker fans, make sure Docker is operational on your machine. You can containerize the app with ease.
+For Docker fans, make sure Docker is operational on your machine. You can containerize the app with ease 😉
 
 - **Build Docker Image**:
   ```sh
@@ -146,7 +147,7 @@ For Docker fans, make sure Docker is operational on your machine. You can contai
   ```
   Long-term prediction for 2010-05-17: 1514.91
   ```
-_For additional Docker commands, use `make help` in the terminal._
+_⚠️ For further Docker commands, type `make help` in the terminal. If you wish to modify the command, including changing the **docker volume path**, you can do so in the `Makefile`. Just ensure you make these adjustments as needed._
 
 ## 🌐 Let's Connect!
 
