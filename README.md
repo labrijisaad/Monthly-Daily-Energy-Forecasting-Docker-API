@@ -1,5 +1,13 @@
 # `Monthly` & `Daily` Energy Forecasting `Docker API` ⚡
 
+<p align="center">
+  <img src="https://github.com/labrijisaad/Monthly-Daily-Energy-Forecasting-Docker-API/assets/74627083/edb0357d-9881-4ecc-820c-6ac8515822fe" width="70%" />
+</p>
+
+<blockquote align="center">
+  <i>This image, generated with DALL-E, depicts tradition and tomorrow dance under a future-woven sky.</i>
+</blockquote>
+
 ## 📘 Introduction
 
 This project is all about predicting energy use 🔌. It began with a simple CSV file 📁, and I worked through steps like analyzing the data (EDA), using machine learning for predictions 🤖, and finally creating a Dockerized API 🐳. **This journey represents a common task for Machine Learning Engineers**: transforming data analysis into a usable API. I developed two prediction models: one for the next day 📆 and another for the next 30 days 🗓️, both based on historical data.
